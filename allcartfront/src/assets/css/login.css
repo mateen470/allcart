@@ -1,0 +1,77 @@
+* {
+    margin: 0;
+    padding: 0;
+  }
+  .login_container {
+    background-image: url("../images/apple.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 38.5rem;
+  }
+  .loginForm{
+    display: inline-block;
+    box-shadow: 3px 3px 3px 3px black;
+    background-color: rgba(255, 255, 255, 0.543);
+    margin-left: 23rem;
+    margin-top: 4rem;
+    padding: 5rem;
+    border-radius: 3rem;
+  }
+  h1 {
+    font-weight: bolder;
+    display: flex;
+    justify-content: center;
+  }
+  h4 {
+    font-weight: bolder;
+    display: flex;
+    justify-content: center;
+  }
+  .loginForm input {
+    display: block;
+    margin-left: 2.75rem;
+    border-radius: 0.3rem;
+    margin-bottom: 1rem;
+    background-color: rgba(255, 255, 255, 0.427);
+    box-shadow: 2px 2px black;
+    border: transparent;
+  }
+  .forname {
+    display: flex;
+    margin-top: 2rem;
+  }
+  .forname input {
+    margin-left: 1rem;
+  }
+  .foremail {
+    display: flex;
+  }
+  .foremail input {
+    margin-left: 1rem;
+  }
+  .forpass {
+    display: flex;
+  }
+  .forpass input {
+    margin-left: 1rem;
+    width: 9.2rem;
+  }
+  .admin_acc {
+    display: flex;
+  }
+  label {
+    font-size: 1.2rem;
+  }
+  a {
+    font-size: 1.2rem;
+    margin-left: 0.5rem;
+  }
+  .lginbtn{
+      display: inline-block;
+      margin-left: 5.5rem;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+      border-radius: 1rem;
+  }

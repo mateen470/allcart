@@ -1,0 +1,67 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.adminhome_container {
+  background-image: url("../images/apple.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 38.5rem;
+}
+.main_table {
+  display: inline-block;
+  position: absolute;
+  margin-left: 10rem;
+  margin-top: 8rem;
+  width: 30rem;
+}
+table {
+  font-size: 1.5rem;
+}
+.navadmin h1 {
+  color: black;
+  text-shadow: none;
+  font-weight: bolder;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.navadmin {
+  background-color: rgba(255, 228, 196, 0.562);
+  position: fixed;
+  width: 20rem;
+  border-radius: 1rem;
+  margin-left: 27rem;
+  box-shadow: 2px 2px 2px black;
+}
+.adminhomebtn {
+  font-size: 1.5rem;
+  position: absolute;
+  margin-left: 10rem;
+  margin-top: 3.5rem;
+  border-radius: 2rem;
+  background-color: rgba(255, 255, 255, 0.758);
+  color: black;
+}
+.adminhomebtn:hover {
+  color: red;
+}
+.actionspan {
+  text-decoration: none;
+  font-size: 1.5rem;
+  margin: 1rem;
+  color: white;
+  padding: 0.3rem;
+  border-radius: 0.5rem;
+}
+.actionspan:hover {
+  color: black;
+}
+#viewbtn {
+  background-color: red;
+}
+#updtbtn {
+  background-color: lightblue;
+}
+#remvbtn {
+  background-color: lightseagreen;
+}

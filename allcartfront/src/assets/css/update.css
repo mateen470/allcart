@@ -1,0 +1,77 @@
+* {
+    margin: 0;
+    padding: 0;
+  }
+  .update_container {
+    background-image: url("../images/apple.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 38.5rem;
+  }
+  
+  .uform {
+    display: inline-block;
+    box-shadow: 3px 3px 3px 3px black;
+    background-color: rgba(255, 255, 255, 0.747);
+    margin-left: 23rem;
+    margin-top: 4rem;
+    padding: 5rem;
+    border-radius: 3rem;
+  }
+  h1 {
+    font-weight: bolder;
+    display: flex;
+    justify-content: center;
+  }
+  h4 {
+    font-weight: bolder;
+  }
+  .uform input {
+    display: block;
+    margin-left: 2.75rem;
+    border-radius: 0.3rem;
+    margin-bottom: 1rem;
+    background-color: rgba(255, 255, 255, 0.584);
+    box-shadow: 2px 2px black;
+    border: transparent;
+  }
+  .upname {
+    display: flex;
+    margin-top: 2rem;
+  }
+  .upname input {
+    margin-left: 1rem;
+  }
+  .upqty {
+    display: flex;
+  }
+  .upqty input {
+    margin-left: 1rem;
+  }
+  .upprice {
+    display: flex;
+  }
+  .upprice input {
+    margin-left: 1rem;
+    width: 9.5rem;
+  }
+  .ubb{
+      display: flex;
+  }
+  .ubb input {
+      margin-left: 1rem;
+      width: 9.5rem;
+    }
+  label {
+    font-size: 1.2rem;
+  }
+  .ubtn {
+    display: inline-block;
+    margin-left: 6.5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    border-radius: 1rem;
+  }
+  
