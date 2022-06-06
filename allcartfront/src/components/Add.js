@@ -5,7 +5,7 @@ function Add() {
   const [adduser, setAdduser] = useState({
     product: "",
     quantity: "",
-    price: "",
+    id: "",
     bestbefore: "",
   });
 
@@ -18,6 +18,35 @@ function Add() {
       };
     });
   };
+
+  const addData = async (e) => {
+    console.log(adduser);
+    e.preventDefault();
+
+    const { product, quantity, id, bestbefore } = adduser;
+
+    const connectToBackEnd = await fetch("http://localhost:3001/add", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        product,
+        quantity,
+        id,
+        bestbefore,
+      }),
+    });
+
+    const input = await connectToBackEnd.json();
+
+    if (connectToBackEnd.status === 422 || !input) {
+      alert("ERROR, YOU MAY HAVE NOT FILLED THE FORM PROPERLY");
+      console.log("ERROR IS addData FUNCTION OF ADD FRONT-END");
+    } else {
+      alert("YOUR FOOD-ITEM HAS BEEN ADDED SUCCESSFULLY");
+    }
+  };
   return (
     <div className="add_container">
       <form className="pform">
@@ -26,7 +55,7 @@ function Add() {
         <div className="pname">
           <label htmlFor="prdct_name">Name:</label>
           <input
-            defaultValue={adduser.name}
+            defaultValue={adduser.product}
             name="product"
             onChange={setproduct}
             id="prdct_name"
@@ -44,9 +73,9 @@ function Add() {
           />
         </div>
         <div className="pprice">
-          <label htmlFor="_price">Price.(Rs.):</label>
+          <label htmlFor="_price">ProductId:</label>
           <input
-            defaultValue={adduser.price}
+            defaultValue={adduser.id}
             name="price"
             onChange={setproduct}
             id="_price"
@@ -63,7 +92,11 @@ function Add() {
             type="date"
           />
         </div>
-        <button type="button" className=" addbtn btn btn-danger">
+        <button
+          type="submit"
+          onClick={addData}
+          className=" addbtn btn btn-danger"
+        >
           Add
         </button>
       </form>

@@ -5,7 +5,7 @@ function Update() {
   const [updateuser, setUpdateuser] = useState({
     product: "",
     quantity: "",
-    price: "",
+    id: "",
     bestbefore: "",
   });
 
@@ -44,9 +44,9 @@ function Update() {
           />
         </div>
         <div className="upprice">
-          <label htmlFor="u_price">Price.(Rs.):</label>
+          <label htmlFor="u_price">ProductId:</label>
           <input
-            defaultValue={updateuser.price}
+            defaultValue={updateuser.id}
             name="price"
             onChange={updateproduct}
             id="u_price"

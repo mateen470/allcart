@@ -26,7 +26,7 @@ function HomeAdmin() {
                 <th scope="col">#</th>
                 <th scope="col">Product</th>
                 <th scope="col">Quantity</th>
-                <th scope="col">Price.</th>
+                <th scope="col">ProductId</th>
                 <th scope="col">BestBefore.</th>
                 <th scope="col">Action.</th>
               </tr>
@@ -37,7 +37,7 @@ function HomeAdmin() {
                   <th scope="row">{i + 1}</th>
                   <td>{p.product}</td>
                   <td>{p.quantity}</td>
-                  <td>{p.price}</td>
+                  <td>{p.id}</td>
                   <td>{p.bestbefore}</td>
                   <td>
                     <NavLink className="actionspan" id="viewbtn" to="/view">

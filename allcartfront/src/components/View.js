@@ -16,8 +16,8 @@ function View() {
             <h3> {viewuser.quantity}</h3>
           </li>
           <li className="list-group-item">
-            <h2>Price(Rs.)</h2>
-            <h3> {viewuser.price}</h3>
+            <h2>ProductId</h2>
+            <h3> {viewuser.id}</h3>
           </li>
           <li className="list-group-item">
             <h2>BestBefore Date.</h2>
