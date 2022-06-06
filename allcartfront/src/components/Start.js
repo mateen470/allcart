@@ -6,7 +6,7 @@ function Start() {
     <div className="main_container">
       <h1 className="startH1">SHOPPING MADE EASY</h1>
       <span>shop fresh to eat fresh</span>
-      <button type="button" class="btn btn-success">
+      <button type="button" class="btn btn-warning">
         <a href="/signup"> Get Started</a>
       </button>
     </div>
