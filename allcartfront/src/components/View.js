@@ -1,8 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import("../assets/css/View.css");
 
 function View() {
   const [viewuser, setViewuser] = useState([]);
+
+  const { id } = useParams("");
+
+  const showSingleRecord = async () => {
+    const data = await fetch(`https://allcartt.herokuapp.com/view/${id}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const viewData = await data.json();
+
+    if (data.status === 422 || !viewData) {
+      console.log("FILLING THE FORM OF VIEW PAGE FAILED");
+    } else {
+      setViewuser(viewData);
+    }
+  };
+  useEffect(() => {
+    showSingleRecord();
+  }, []);
+
   return (
     <div className="view_container">
       <div className="card">
@@ -20,8 +44,8 @@ function View() {
             <h3> {viewuser.id}</h3>
           </li>
           <li className="list-group-item">
-            <h2>BestBefore Date.</h2>
-            <h3> {viewuser.bestbefore}</h3>
+            <h2>Description</h2>
+            <h3> {viewuser.description}</h3>
           </li>
         </ul>
       </div>

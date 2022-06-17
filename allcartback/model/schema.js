@@ -14,8 +14,8 @@ const newFood = new mongoose.Schema({
     required: true,
     unique:true
   },
-  bestbefore: {
-    type: Date,
+  description: {
+    type: String,
     required: true,
   },
 });

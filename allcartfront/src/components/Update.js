@@ -1,22 +1,77 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { NavLink, useParams, useNavigate } from "react-router-dom";
 import("../assets/css/update.css");
 
 function Update() {
+  const goBack = useNavigate();
+
   const [updateuser, setUpdateuser] = useState({
     product: "",
     quantity: "",
     id: "",
-    bestbefore: "",
+    description: "",
   });
 
   const updateproduct = (e) => {
-    const { name, defaultValue } = e.target;
+    const { name, value } = e.target;
     setUpdateuser((previousValue) => {
       return {
         ...previousValue,
-        [name]: defaultValue,
+        [name]: value,
       };
     });
+  };
+
+  let { id } = useParams("");
+
+  const fillPreviousData = async () => {
+    const previousData = await fetch(`https://allcartt.herokuapp.com/view/${id}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const data = await previousData.json();
+
+    if (previousData.status === 422 || !data) {
+      console.log("PREVIOUS DATA TO FILL THE FORM CANNOT GET");
+    } else {
+      setUpdateuser(data);
+    }
+  };
+  useEffect(() => {
+    fillPreviousData();
+  }, []);
+
+  const updateData = async (e) => {
+    e.preventDefault();
+
+    const { product, quantity, id, description } = updateuser;
+
+    const updateDataInBackEnd = await fetch(
+      `https://allcartt.herokuapp.com/update/${id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          product,
+          quantity,
+          id,
+          description,
+        }),
+      }
+    );
+    const updatedDataInBackEnd = await updateDataInBackEnd.json();
+    if (updateDataInBackEnd.status === 422 || !updatedDataInBackEnd) {
+      console.log("UPDATE PROCESS FAILED");
+      alert("ERROR: CANNOT UPDATE THE DATA");
+    } else {
+      alert("DATA UPDATED SUCCESSFULLY");
+      goBack("/homeadmin");
+    }
   };
   return (
     <div className="update_container">
@@ -26,7 +81,7 @@ function Update() {
         <div className="upname">
           <label htmlFor="uprdct_name">Name:</label>
           <input
-            defaultValue={updateuser.name}
+            defaultValue={updateuser.product}
             name="product"
             onChange={updateproduct}
             id="uprdct_name"
@@ -54,16 +109,20 @@ function Update() {
           />
         </div>
         <div className="ubb">
-          <label htmlFor="u_bb">Best Before:</label>
+          <label htmlFor="u_bb">Description:</label>
           <input
-            defaultValue={updateuser.bestbefore}
-            name="bestbefore"
+            defaultValue={updateuser.description}
+            name="description"
             onChange={updateproduct}
             id="u_bb"
-            type="date"
+            type="text"
           />
         </div>
-        <button type="button" className=" ubtn btn btn-dark">
+        <button
+          type="submit"
+          onClick={updateData}
+          className=" ubtn btn btn-dark"
+        >
           Update
         </button>
       </form>

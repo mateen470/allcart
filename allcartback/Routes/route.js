@@ -1,7 +1,7 @@
 const express = require("express");
-const { append } = require("express/lib/response");
 const router = express.Router();
 const Food = require("../model/schema");
+const employee = require("../model/employeeModel");
 
 // THIS WILL SHOW ALLL THE FOOD ITEMS IN THE DATABASE AT SIMPLE HOME PAGE
 router.get("/home", async (req, res) => {
@@ -29,9 +29,14 @@ router.get("/homeadmin", async (req, res) => {
 
 // TO ADD THE FOOD ITEM FROM ADD PAGE
 router.post("/add", async (req, res) => {
-  const { product, quantity, id, bestbefore } = req.body;
+  const { product, quantity, id, description } = req.body;
+
+  if (!product || !quantity || !id || !description) {
+    res.status(422).send("KINDLY FILL THE FORM COMPLETELY");
+  }
   try {
     const alreadyExist = await Food.findOne({ id: id });
+    console.log("from add api already exist", alreadyExist);
     if (alreadyExist) {
       res.status(422).json("THE FOOD ITEM WITH THE GIVEN ID ALREADY EXISTS!");
     } else {
@@ -39,7 +44,7 @@ router.post("/add", async (req, res) => {
         product,
         quantity,
         id,
-        bestbefore,
+        description,
       });
       await newItem.save();
       console.log(
@@ -49,12 +54,12 @@ router.post("/add", async (req, res) => {
     }
   } catch (error) {
     console.log("ADD API FAILED");
-    res.status(422).send(error);
+    res.status(404).send(error);
   }
 });
 
 // TO VIEW A SINGLE RECORD AGAINST THAT USER'S ID
-router.get("/view:id", async (req, res) => {
+router.get("/view/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const singleRead = await Food.findById({ _id: id });
@@ -62,12 +67,12 @@ router.get("/view:id", async (req, res) => {
     res.status(201).json(singleRead);
   } catch (error) {
     console.log("VIEW API FAILED");
-    res.status(422).send(error);
+    res.status(404).send(error);
   }
 });
 
 // TO UPDATE A SINGLE RECORD AGAINST IT'S ID
-router.put("/update:id", async (req, res) => {
+router.put("/update/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const updateItem = await Food.findOneAndUpdate({ id }, req.body, {
@@ -82,7 +87,7 @@ router.put("/update:id", async (req, res) => {
 });
 
 // TO REMOVE A FOODITEM AGAINST IT'S ID
-router.delete("/remove:id", async (req, res) => {
+router.delete("/remove/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const removeItem = await Food.findOneAndDelete({ _id: id });

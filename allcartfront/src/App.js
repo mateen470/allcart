@@ -22,8 +22,8 @@ function App() {
       <Route path="/homeadmin" element={<HomeAdmin />} />
       <Route path="/home" element={<Home />} />
       <Route path="/add" element={<Add />} />
-      <Route path="/update" element={<Update />} />
-      <Route path="/view" element={<View />} />
+      <Route path="/update/:id" element={<Update />} />
+      <Route path="/view/:id" element={<View />} />
     </Routes>
   );
 }

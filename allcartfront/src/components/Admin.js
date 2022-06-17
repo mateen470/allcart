@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from "react";
+import axios from 'axios'
 import ("../assets/css/adminpanel.css");
 
 function Admin() {
@@ -10,11 +11,11 @@ function Admin() {
   });
 
   const setadmin = (e) => {
-    const { name, defaultValue } = e.target;
+    const { name, value } = e.target;
     setAdminuser((previousValue) => {
       return {
         ...previousValue,
-        [name]: defaultValue,
+        [name]: value,
       };
     });
   };

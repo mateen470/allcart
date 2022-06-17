@@ -45,6 +45,7 @@ table {
 }
 #viewbtn {
   background-color: red;
+  cursor: pointer;
 }
 .lgin_admin {
   float: right;

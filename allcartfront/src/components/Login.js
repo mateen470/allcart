@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from "react";
+import axios from 'axios'
 import ("../assets/css/login.css");
 
 function Login() {
@@ -10,11 +11,11 @@ function Login() {
   });
 
   const setdata = (e) => {
-    const { name, defaultValue } = e.target;
+    const { name, value } = e.target;
     setLginuser((previousValue) => {
       return {
         ...previousValue,
-        [name]: defaultValue,
+        [name]: value,
       };
     });
   };

@@ -6,15 +6,15 @@ function Add() {
     product: "",
     quantity: "",
     id: "",
-    bestbefore: "",
+    description: "",
   });
 
   const setproduct = (e) => {
-    const { name, defaultValue } = e.target;
+    const { name, value } = e.target;
     setAdduser((previousValue) => {
       return {
         ...previousValue,
-        [name]: defaultValue,
+        [name]: value,
       };
     });
   };
@@ -23,24 +23,27 @@ function Add() {
     console.log(adduser);
     e.preventDefault();
 
-    const { product, quantity, id, bestbefore } = adduser;
+    const { product, quantity, id, description } = adduser;
 
-    const connectToBackEnd = await fetch("http://localhost:3001/add", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        product,
-        quantity,
-        id,
-        bestbefore,
-      }),
-    });
-
+    const connectToBackEnd = await fetch(
+      "https://allcartt.herokuapp.com/add",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          product,
+          quantity,
+          id,
+          description,
+        }),
+      }
+    );
+    console.log("in add function");
     const input = await connectToBackEnd.json();
 
-    if (connectToBackEnd.status === 422 || !input) {
+    if (connectToBackEnd.status === 403 || !input) {
       alert("ERROR, YOU MAY HAVE NOT FILLED THE FORM PROPERLY");
       console.log("ERROR IS addData FUNCTION OF ADD FRONT-END");
     } else {
@@ -76,20 +79,20 @@ function Add() {
           <label htmlFor="_price">ProductId:</label>
           <input
             defaultValue={adduser.id}
-            name="price"
+            name="id"
             onChange={setproduct}
             id="_price"
             type="number"
           />
         </div>
         <div className="bb">
-          <label htmlFor="_bb">Best Before:</label>
+          <label htmlFor="_bb">Item Description:</label>
           <input
-            defaultValue={adduser.bestbefore}
-            name="bestbefore"
+            defaultValue={adduser.description}
+            name="description"
             onChange={setproduct}
             id="_bb"
-            type="date"
+            type="text"
           />
         </div>
         <button

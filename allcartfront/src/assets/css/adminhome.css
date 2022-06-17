@@ -58,10 +58,13 @@ table {
 }
 #viewbtn {
   background-color: red;
+  cursor: pointer;
 }
 #updtbtn {
   background-color: lightblue;
+  cursor: pointer;
 }
 #remvbtn {
+  cursor: pointer;
   background-color: lightseagreen;
 }
